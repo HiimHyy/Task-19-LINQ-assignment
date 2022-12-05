@@ -1,4 +1,5 @@
-﻿using Task_19_LINQ_assignment;
+﻿using System.Runtime.CompilerServices;
+using Task_19_LINQ_assignment;
 List<Student> students = new List<Student>()
 {
     new Student("Jaakko Laaksonen", "Sammonkatu 5", new DateTime(1995,11,23)),
@@ -22,7 +23,7 @@ List<Student> students = new List<Student>()
     new Student("Päivö Mäki", "Kokkomäenkatu 3", new DateTime(1992,12,02)),
     new Student("Salla Laukkanen", "Laiturikatu 59", new DateTime(2000,11,09))
 };
-
+Console.WriteLine("List 1:");
 var list1 = from item in students
             where item.DateOfBirth > new DateTime(1989,1,21)
             orderby item.DateOfBirth
@@ -40,3 +41,29 @@ foreach (var item in list2)
 {
     Console.WriteLine(item);
 }
+
+Console.WriteLine("\nList 3: ");
+var list3 = from item in students
+            where item.Name.Contains("Lahti")
+            select item;
+foreach (var item in list3)
+{
+    Console.WriteLine(item);
+}
+
+Console.WriteLine("\nList 4: ");
+var list4 = (from item in students
+            where item.Name.Contains("Lahti")
+            orderby item.DateOfBirth ascending
+            select item).FirstOrDefault();
+
+foreach (var item in list4.Name)
+    {
+        Console.Write(item);
+    }
+
+Console.WriteLine("\n\nList 5:");
+var list5 = (from item in students
+             where item.DateOfBirth > new DateTime(1956)
+             select item).Any();
+Console.Write("Have all the students born after the year 1956?: {0}", list5);
