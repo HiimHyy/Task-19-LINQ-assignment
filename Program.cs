@@ -32,5 +32,11 @@ foreach (var item in list1)
     Console.WriteLine(item);
 }
 
+Console.WriteLine("\nList 2:");
 var list2 = from item in students
-            orderby 
+            orderby item.Name ascending
+            select item;
+foreach (var item in list2)
+{
+    Console.WriteLine(item);
+}
